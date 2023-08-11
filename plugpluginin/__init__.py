@@ -1,4 +1,5 @@
 import pathlib
+from urllib.parse import urlparse
 
 from extism import Function, host_fn, ValType, Plugin, set_log_file
 
@@ -11,10 +12,14 @@ PLUGIN_ID = 0
 def register_plugin(plugin, input_, output, _user_data):
     global REGISTRY
     global PLUGIN_ID
-    name = plugin.input_string(input_[0])
-    wasm_file_path = pathlib.Path(__file__).parent.parent / "plugins" / f"{name}.wasm"
-    config = { "wasm": [{"path": str(wasm_file_path)}], "memory": {"max": 5} }
-    plugin = Plugin(config)
+    wasm_path = str(plugin.input_string(input_[0]))
+    pieces = urlparse(wasm_path)
+    manifest = {"memory": {"max": 5}}
+    if pieces.scheme.lower() in ('http', 'https'):
+        manifest["wasm"] = [{ "url": wasm_path }]
+    else:
+        manifest["wasm"] = [{ "path": wasm_path }]
+    plugin = Plugin(manifest)
     REGISTRY[PLUGIN_ID] = plugin
     output[0].value = PLUGIN_ID
     PLUGIN_ID += 1

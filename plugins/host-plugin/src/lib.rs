@@ -7,9 +7,9 @@ extern "C" {
 
 #[plugin_fn]
 pub fn run(_: ()) -> FnResult<String> {
-    // register a count_vowels plugin
-    let name = "count_vowels".to_string();
-    let m = Memory::from_bytes(name.as_bytes());
+    // register the demo count_vowels plugin
+    let url = "https://raw.githubusercontent.com/extism/extism/main/wasm/code.wasm".to_string();
+    let m = Memory::from_bytes(url.as_bytes());
     let id = unsafe { register_plugin(m.offset) };
     // get back an id to the plugin
     // now we can call it:

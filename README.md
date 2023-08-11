@@ -99,3 +99,5 @@ There are lots of considerations when applying this pattern.
 First you must consider the overhead of all this indirect copying. You should measure and optimize as best as you can. You might be able to optimize this with some extra host functions.
 
 Second you should consider security and resource problems. Giving a plugin the ability to spin up as many plugins as it wants is probably not a good idea in production. You should apply some kind of access control to make sure it can only load the plugins you want, and maybe limit how many it can load and which functions it can call. Creating a more specific API than just `call_plugin` might help you narrow down how the plugin can interact with others.
+
+Third, you may want to consider adding a `free` or some way to deallocate plugins in the registry.
