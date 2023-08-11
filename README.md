@@ -94,7 +94,7 @@ pub fn run(_: ()) -> FnResult<String> {
 
 ## Considerations
 
-There lots of considerations when applying this pattern.
+There are lots of considerations when applying this pattern.
 
 First you must consider the overhead of all this indirect copying. You should measure and optimize as best as you can. You might be able to optimize this with some extra host functions.
 
