@@ -58,8 +58,9 @@ def call_plugin(plugin, input_, output, _user_data):
     plugin.return_bytes(output[0], result)
 ```
 
-### plugin
+## Plugin
 
+I wrote the plug-ins in rust, but we can use any PDK that supports host functions.
 On the plug-in side, we first need to register the external host functions:
 
 ```rust
