@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "plugpluginin"
+version = "0.1.0"
+description = ""
+authors = ["Benjamin Eckel <ben@dylibso.com>"]
+license = "BSD-Clause-3"
+readme = "README.md"
+packages = [{include = "plugpluginin"}]
+
+[tool.poetry.scripts]
+main = "plugpluginin:main"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+extism = "^0.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
